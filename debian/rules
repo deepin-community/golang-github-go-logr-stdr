@@ -1,4 +1,10 @@
 #!/usr/bin/make -f
 
+export DH_GOPKG := github.com/go-logr/stdr
+
 %:
-	dh $@
+	dh $@ --buildsystem=golang --with=golang
+
+override_dh_auto_install:
+	dh_auto_install
+	rm -rf $(CURDIR)/debian/golang-github-go-logr-stdr-dev/usr/bin
